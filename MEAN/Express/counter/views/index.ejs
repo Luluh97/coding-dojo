@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .btn btn-primary{
+            margin: 100px;
+        }
+    </style>
+    <title>Car Info</title>
+</head>
+<body>
+        <div class="card text-center">
+       
+                <div class="card-body">
+                  <h5 class="card-title">Counter</h5>
+                  <p class="card-text"><%= counter %> times</p>
+                  <form method="post" action="/add_two">
+                    <input class="btn btn-primary" type="submit" value="+2"><br/>
+                </form>
+                <form method="post" action="/reset">
+                    <input class="btn btn-primary" type="submit" value="reset">
+                  </form>
+                </div>
+        </div>
+</body>
+</html>
+
