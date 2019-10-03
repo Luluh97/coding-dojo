@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+    #img{
+        width: 300px;
+        height: 200px;
+    }
+</style>
+<title>Cats</title>
+</head>
+<body>
+    <% for (var c of cat) { %>
+        <%if (c.name == 'Cuddles') { %>
+            <img id="img" src="images/cat1.jpg" alt="cat image">
+        <% } %>
+        <%if (c.name == 'Lio') { %>
+            <img id="img" src="images/cat2.jpg" alt="cat image">
+        <% } %>
+        <%if (c.name == 'Fluffy') { %>
+            <img id="img" src="images/cat3.jpg" alt="cat image">
+        <% } %>
+        <h3>Name: <%= c.name %></h3>
+        <h4>Favorite Food: <%= c.food %></h4>
+        <h4>Age: <%= c.age %></h4>
+        <h4>Sleeping Spots: <%= c.sleeping %></h4>
+    <% } %>
+</body>
+</html>
+
+
+
