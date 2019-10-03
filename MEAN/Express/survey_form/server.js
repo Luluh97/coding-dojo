@@ -7,16 +7,34 @@ app.set('views', __dirname + '/views');
 
 app.use(express.urlencoded({extended: true}));
 
+const session = require('express-session');
+app.use(session({
+  secret: 'keyboardkitteh',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}))
+
+
+
 app.get('/', (req, res) => {
-    res.render('survey')
+    if(!req.session.counter){
+
+        req.session.counter = 1
+    }
+    else{
+        req.session.counter++;
+    }
+   
+    res.render('index', {counter: req.session.counter});
 });
 
-app.post('/result', (req, res) => {
-    name = req.body.name
-    location = req.body.location
-    language = req.body.language
-    comment = req.body.comment
-    
-    res.render('result', {name: name, location: location, language: language, comment: comment});
+app.post('/add_two', (req, res) => {
+    req.session.counter=req.session.counter+2;
+    res.render('index', {counter: req.session.counter});
 });
 
+app.post('/reset', (req, res) => {
+    req.session.counter=1;
+    res.render('index', {counter: req.session.counter});
+});
