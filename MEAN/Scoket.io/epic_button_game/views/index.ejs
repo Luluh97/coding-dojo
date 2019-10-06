@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Epic Button Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function (){
+            var socket = io.connect('http://localhost:4400');
+            $('#submit').click(function (){      
+                socket.emit('posting_form');  
+            });
+            $('#reset').click(function (){      
+                socket.emit('reset_form');  
+            });
+            socket.on('counter', function (data){
+                var output = document.getElementById('count_val')
+                console.log(data.counter)
+                output.innerHTML = '<h3>'+data.counter+'</h3>'
+              
+            }); 
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="card">
+            <div class="card-header">
+              Epic Button Game
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">The button has been pushed <span class="alert-link"id='count_val'></span> times.</h5>
+              <p class="card-text">Push the button to update count!</p>
+              <button type="submit" id="submit" class="btn btn-primary">Push the epic button</button>
+              <button type="submit" id="reset" class="btn btn-danger">Reset Count</button>
+            </div>
+    </div>
+</body>
+</html>
