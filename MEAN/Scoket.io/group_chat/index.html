@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript"></script>
+    <style>
+        #messageArea{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="userFormArea" class="row">
+            <div class="col-md-12">
+                <form id="userForm">
+                    <div class='form-group'>
+                        <h3>Enter Username</h3>
+                        <textarea class="form-control" id="username"></textarea>
+                        <br/>
+                        <input type="submit" class="btn btn-primary" value="Login"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id='messageArea' class="row">
+            <div class="col-md-8">
+                <div class="chat" id="chat"></div>
+                <form id="messageForm">
+                    <div class='form-group'>
+                        <textarea class="form-control" id="message" placeholder="Enter Message"></textarea>
+                        <br/>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Send Message"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+    <script>
+        $(function(){
+        
+            var socket = io.connect()
+            var $messageForm = $('#messageForm');
+            var $message = $('#message');
+            var chat = document.getElementById('chat');
+            var $userFormArea = $('#userFormArea')
+            var $messageArea = $('#messageArea')
+            var $userForm = $('#userForm')
+            var $users = $('#users')
+            var $username = $('#username')
+
+            $messageForm.submit(function(e){
+                e.preventDefault();
+                socket.emit('send_message', $message.val());
+                $message.val('');
+            });
+
+            socket.on('new_message', function(data){
+                chat.innerHTML += '<div class="well"><strong>'+data.user+': </strong>'+data.msg+'</div>'  
+            });
+
+            $userForm.submit(function(e){
+                e.preventDefault();
+                socket.emit('new_user', $username.val(), function(data){
+                    if(data){
+                        $userFormArea.hide();
+                        $messageArea.show();
+
+                    }
+                });
+                $username.val('');
+            });
+        });
+    </script>
+</body>
+</html>
