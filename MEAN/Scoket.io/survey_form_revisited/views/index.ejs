@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Survey</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect('http://localhost:4400');
+            $('#survey').submit(function (e){
+                
+                var data = 
+                {
+                    name: $("#name").val(),
+                    location: $("#location").val(),
+                    language: $("#language").val(),
+                    comment: $("#comment").val()
+                };
+                e.preventDefault()
+                socket.emit('posting_form', data);
+              
+            });
+            socket.on('updated_message', function (data){
+                var a = document.getElementById('output')
+                console.log(data.msg)
+                a.innerHTML = '<p>'+data.msg+'</p>'
+              
+            }); 
+        });
+    </script>
+    <style>
+            #output{
+                background-color: lightblue;
+                
+            }
+            #survey{
+                outline: 2px solid black;
+                height: 300px;
+                width: 400px;
+                margin:100px;
+                margin-left: 400px;
+                padding-left: 150px;
+                padding-top: 20px; 
+            }
+            #submit{
+                background-color: grey;
+                color: white;
+            }
+            
+        </style>
+</head>
+<body>
+    <div id='output'></div>
+    <form id='survey'>
+            <p>Your Name: <input id ='name' type="text" name="name"></p>
+            <p>Dojo Location: 
+                    <select id='location' name="loction">
+                            <aoption value="San Jose">San Jose</option>
+                            <option value="Los Angeles">Los Angeles</option>
+                            <option value="Arizona">Arizona</option>
+                            <option value="San Francisco">San Francisco</option>
+                    </select>
+            </p>
+            <p>Favorite Language: 
+                    <select id ='language' name="language">
+                            <option value="Python">Python</option>
+                            <option value=" JavaScript">JavaScript</option>
+                            <option value="C++">C++</option>
+                            <option value="C#">C#</option>
+                    </select>
+            </p>
+            <p> Comment (Optional): <input id='comment' type="text" name="comment"></p>
+            <input id="submit" type="submit" value="Submit">
+    </form>
+</body>
+</html>
