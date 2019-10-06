@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Real-Time Color</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function (){
+            var socket = io.connect('http://localhost:4400');
+            $('#green').click(function (){      
+                socket.emit('green_clicked');  
+            });
+            socket.on('green_background', function(data){
+                $('body').css('background-color', 'green')
+            }); 
+            $('#blue').click(function (){      
+                socket.emit('blue_clicked');  
+            });
+            socket.on('blue_background', function(data){
+                $('body').css('background-color', 'blue')
+            });
+            $('#pink').click(function (){      
+                socket.emit('pink_clicked');  
+            });
+            socket.on('pink_background', function(data){
+                $('body').css('background-color', 'pink')
+            });
+            
+        });
+    </script>
+    <style>
+        #buttons{
+            margin-left: 550px;
+            margin-top: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id='buttons' class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" id="green" class="btn btn-secondary">Green</button>
+            <button type="button" id="blue" class="btn btn-secondary">Blue</button>
+            <button type="button" id="pink" class="btn btn-secondary">Pink</button>
+    </div>
+</body>
+</html>
