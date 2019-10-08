@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dojo Qoutes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h3{
+            margin-left: 350px;
+            color: navy;
+        }
+    </style>
+</head>
+<body>
+    <h3>Here are the awsome qoutes</h3><br/>
+        <% for (var x of qoutes) { %>
+            <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <strong class="mb-1">"<%= x.qoute %>"</strong>
+                      <small class="text-muted"><%= x.createdAt %></small>
+                    </div>
+                    <small class="text-muted">- <%= x.name %> </small>
+            </a><br/>
+        <% } %>
+</body>
+</html>
+
+
