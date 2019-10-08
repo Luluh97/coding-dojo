@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Mongooses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Animal</th>
+                    <th scope="col">Family</th>
+                    <th scope="col">Order</th>
+                    <th scope="col">Class</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i of all) { %>
+                <tr>
+                    <td><%= i.animal %></td>
+                    <td><%= i.family %></td>
+                    <td><%= i.order %></td>
+                    <td><%= i.class %></td>
+                    <td>
+                        <form action="/mongooses/destroy/<%= i._id %>" method="post">
+                            <button type="submit" class="btn btn-link">Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+                <% } %>
+            </tbody>
+    </table>
+</body>
+</html>
