@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Qouting Dojo</title>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        strong{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="card">
+                <h5 class="card-header">Welcome to Qouting Dojo</h5>
+                <div class="card-body">
+                    <form method="post" action="/qoutes">
+                        Your name: <p><input type="text" name="name"></p><br/>
+                        Your qoute: <p><input type="text" name='qoute'></p> 
+                    <button class="btn btn-primary" type="submit">Add My Qoute!</button>
+                    </form><br/>
+                    <form action="/qoutes">
+                        <button class="btn btn-success"type="submit">Skip To Qoute!</button>
+                    </form>
+                </div>
+        </div>
+
+
+      
+                <% if(messages.registration) { %>
+                    <% for (var x of messages.registration) { %>
+                     <strong><%= x %></strong>
+                    <% } %>
+                <% } %>
+
+</body>
+</html>
+
+
