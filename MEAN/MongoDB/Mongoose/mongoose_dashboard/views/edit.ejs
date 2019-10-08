@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Mongoose</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #container{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">  
+        <h3>Edit Mongoose Form</h3> 
+        <form action="/mongooses/<%= edit._id %>" method="post">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Animal</label>
+                <input type="text" name='animal' class="form-control" id="formGroupExampleInput" value="<%= edit.animal %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Family</label>
+                <input type="text" name='family' class="form-control" id="formGroupExampleInput2" value="<%= edit.family %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Order</label>
+                <input type="text" name='order' class="form-control" id="formGroupExampleInput2" value="<%= edit.order %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Class</label>
+                <input type="text" name='class' class="form-control" id="formGroupExampleInput2" value="<%= edit.class %>">
+            </div>
+            <button type="submit" class="btn btn-secondary">Edit Mongoose</button>
+        </form>
+    </div>
+</body>
+</html>
