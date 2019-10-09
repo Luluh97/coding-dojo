@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="card">
+        <h1 class="card-header">The Dojo Message Board</h1>
+        <div class="card-body">
+            <form action="/messages" method="post">
+                Name: <p><input type="text" name="name"></p><br/>
+                Message: <p><input type="text" name="message"></p><br/>
+                <button class="btn btn-primary btn-sm" type="submit">Post message</button>
+            </form>
+        </div>
+    </div></br>
+    <div class="card">
+        <% for(const m of messageKey) { %>
+            <div class="card-body">
+                <h3><%=m.name%>: </h3><h3 class="card-title"><%=m.message%></h3>
+                <p>Leave a comment below</p>
+            </div> 
+    </div><br/> 
+    <div class="card">
+        <p>Comments:</p>
+            <% for (const c of m._comment) { %>
+                <strong><%=c.com_name%>: </strong><small class="card-title"><%=c.comment%></small><br/>
+            <% } %>
+       
+            <form action="/comments/<%= m._id %>" method="post">
+                Name: <p><input type="text" name="com_name"></p>
+                Comment: <p><input type="text" name="comment"></p>
+                <button type="submit" class="btn btn-secondary btn-sm">Post comment</button>
+            </form>
+    </div>  <br/>     
+        <% } %>
+    </body>
+
+ 
+</html>
